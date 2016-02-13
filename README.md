@@ -23,33 +23,46 @@ setTimeout(function(){
 }, 5 * 1000 );
 ```
 
-### Custom Parameters
+## Accepted Parameters
+
+```
+action     : text, null
+frame_id   : int, null
+enabled    : 0 or 1, null
+name       : text, null
+id         : int
+```
+
+### Customizing Parameters
 
 To make a more sophisticated call include the parameters and values in an array. Below is an example condition API call.
 
 ```javascript
-setTimeout(function(){
-    $.fn.BroadSignAction({
-            "action"     : "condition",
-            "frame_id"   : null,
-            "enabled"    : 1,
-            "name"       : cloudy,
-            "id"       : callID
-        });
-}, 5 * 1000 );
-```
-
-## Default Settings:
-
-```
-action     : "stop", text, null
-frame_id   : null, int
-enabled    : null, boolean
-name       : null, text
-id         : generated time stamp or int
+$.fn.BroadSignAction({
+        "action"     : "condition",
+        "enabled"    : 1,
+        "name"       : cloudy
+    });
 ```
 
 To *not include* an action tag in the XML call, declare action to be `null`.
 
+```javascript
+$.fn.BroadSignAction({
+        "action"     : null
+    });
+```
 
-This plugin is designed to work with BroadSign v11.
+### Default Parameter Settings:
+
+```javascript
+$.fn.BroadSignAction({
+        action     : "stop",
+        frame_id   : null,
+        enabled    : null,
+        name       : null,
+        id         : generated from time stamp
+    });
+```
+
+This plugin is designed to work with BroadSign v11 and chromium.
