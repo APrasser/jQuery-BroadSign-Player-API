@@ -7,7 +7,9 @@ More information about the Player APIs can be found here: http://broadsign.com/d
 
 ## Example Implementations
 
-Reference the BroadSignAction.js file before your closing `</body>` tag. With no configuring required it will cause the "Close" action to fire. 
+Reference the BroadSignAction.js file before your closing `</body>` tag. 
+
+With no configuring required it will cause the "Close" action to fire. 
 
 ```javascript
 $.fn.BroadSignAction();
@@ -47,7 +49,7 @@ name       : null, text
 id         : generated time stamp or int
 ```
 
-To not include an action tag in the XML call declare action to be `null`.
+To *not include* an action tag in the XML call, declare action to be `null`.
 
 
 This plugin is designed to work with BroadSign v11.
