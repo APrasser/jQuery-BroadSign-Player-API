@@ -41,7 +41,7 @@ To make a more sophisticated call include the parameters and values in an array.
 $.fn.BroadSignAction({
         "action"     : "condition",
         "enabled"    : 1,
-        "name"       : cloudy
+        "name"       : "cloudy"
     });
 ```
 
