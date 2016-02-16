@@ -5,15 +5,57 @@
 
 // Initiate connection to broadsign server
 var BroadSignSocket = new WebSocket("ws://localhost:2324");
+console.log("BroadSign Socket Init");
+
+
+var BSState = "";
+(function($) {
+    $.fn.BroadSignState = function( options ) {
+        
+        if (BroadSignSocket.readyState == 0) {
+            BSState = "CONNECTING";
+        } else if (BroadSignSocket.readyState == 1) {
+            BSState = "OPEN";
+        } else if (BroadSignSocket.readyState == 2) {
+            BSState = "CLOSING";
+        } else if (BroadSignSocket.readyState == 3) {
+            BSState = "CLOSED";
+        } else { 
+            
+        };   
+        
+        console.log("BroadSign Socket Status: " + BSState);
+        
+      };
+}(jQuery));
+
+// Print state of Websocket to console, for debugging purposes
+        $.fn.BroadSignState();
 
 // Listen and print to console
-BroadSignSocket.onmessage = function (event) {
-    console.log(event.data);
-}
+BroadSignSocket.onmessage = function (WSMessage) {
+    console.log("BroadSign Socket Message: " + WSMessage.data);
+};
+// Listen and print to console
+BroadSignSocket.onopen = function (WSMessage) {
+    console.log("BroadSign Socket Status: OPEN");
+};
+BroadSignSocket.onclose = function (WSMessage) {
+    console.log("BroadSign Socket Status: CLOSED");
+};
+BroadSignSocket.onerror = function (WSMessage) {
+    console.log("BroadSign Socket Status: ERROR");
+};
+
 
 (function($) {
   
   $.fn.BroadSignAction = function( options ) {
+      
+        console.log("Start BroadSign Socket Call");
+      
+    // Print state of Websocket to console, for debugging purposes
+        $.fn.BroadSignState();
     
     // Unix time stamp for unique calls as default
         var callID = new Date().getTime(); 
@@ -33,11 +75,7 @@ BroadSignSocket.onmessage = function (event) {
     // Validation
     
     var callId = "id=\"" + userSettings.id + "\" ";
-    
     var callAction = "id=\"" + userSettings.action + "\" ";
-    if (null == userSettings.action) {
-      var callFrame_id = "";
-    }
     
     var callFrame_id = "";
     if (null != userSettings.frame_id) {
