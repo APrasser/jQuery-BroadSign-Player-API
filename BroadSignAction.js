@@ -72,10 +72,10 @@ BroadSignSocket.onerror = function (WSMessage) {
     // User Overides
         var userSettings = $.extend(settings, options);
     
-    // Validation
+    // Validation 
     
     var callId = "id=\"" + userSettings.id + "\" ";
-    var callAction = "id=\"" + userSettings.action + "\" ";
+    var callAction = "action=\"" + userSettings.action + "\" ";
     
     var callFrame_id = "";
     if (null != userSettings.frame_id) {
